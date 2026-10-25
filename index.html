@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2456a6">
+  <title>Личный Agile-планировщик</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <p class="eyebrow">Учебный ИТ-проект</p>
+        <h1>Личный Agile-планировщик</h1>
+        <p class="subtitle">Бэклог, спринт и задачи в одном месте</p>
+      </div>
+      <div class="header-badge" aria-label="Данные сохраняются в браузере">Локальное хранение</div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="summary" aria-labelledby="summary-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Обзор</p>
+          <h2 id="summary-title">Текущий спринт</h2>
+        </div>
+        <p id="sprint-period" class="muted">Даты не заданы</p>
+      </div>
+      <p id="sprint-goal-display" class="goal">Цель спринта пока не указана.</p>
+      <div class="stats" aria-label="Показатели спринта">
+        <div class="stat"><span id="stat-planned" class="stat-value">0</span><span class="stat-label">Задач в спринте</span></div>
+        <div class="stat"><span id="stat-done" class="stat-value">0</span><span class="stat-label">Задач готово</span></div>
+        <div class="stat"><span id="stat-points" class="stat-value">0 / 0</span><span class="stat-label">Баллов выполнено</span></div>
+        <div class="stat"><span id="stat-progress" class="stat-value">0%</span><span class="stat-label">Прогресс спринта</span></div>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="Прогресс спринта" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress-fill"></div></div>
+    </section>
+
+    <div class="workspace-grid">
+      <section class="panel" aria-labelledby="task-form-title">
+        <p class="eyebrow">Планирование</p>
+        <h2 id="task-form-title">Новая задача</h2>
+        <form id="task-form">
+          <input type="hidden" id="task-id">
+          <label for="task-title">Название задачи <span aria-hidden="true">*</span></label>
+          <input id="task-title" name="title" type="text" maxlength="100" required placeholder="Например, подготовить макет доски">
+
+          <label for="task-description">Описание</label>
+          <textarea id="task-description" name="description" rows="3" maxlength="500" placeholder="Что нужно получить в результате?"></textarea>
+
+          <div class="field-row">
+            <div>
+              <label for="task-priority">Приоритет</label>
+              <select id="task-priority" name="priority">
+                <option value="medium">Средний</option>
+                <option value="high">Высокий</option>
+                <option value="low">Низкий</option>
+              </select>
+            </div>
+            <div>
+              <label for="task-points">Оценка, баллы</label>
+              <select id="task-points" name="points">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="5">5</option>
+                <option value="8">8</option>
+                <option value="13">13</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="checkbox-line"><input id="task-in-sprint" type="checkbox" checked><span>Добавить в текущий спринт</span></label>
+          <div class="button-row">
+            <button id="task-submit" class="button primary" type="submit">Добавить задачу</button>
+            <button id="task-cancel" class="button secondary hidden" type="button">Отменить правку</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="sprint-form-title">
+        <p class="eyebrow">Настройка</p>
+        <h2 id="sprint-form-title">Параметры спринта</h2>
+        <form id="sprint-form">
+          <label for="sprint-name">Название</label>
+          <input id="sprint-name" type="text" maxlength="80" required placeholder="Спринт 1">
+
+          <label for="sprint-goal">Цель</label>
+          <textarea id="sprint-goal" rows="3" maxlength="300" placeholder="Например, подготовить первую рабочую версию"></textarea>
+
+          <div class="field-row">
+            <div><label for="sprint-start">Начало</label><input id="sprint-start" type="date"></div>
+            <div><label for="sprint-end">Окончание</label><input id="sprint-end" type="date"></div>
+          </div>
+          <button class="button primary" type="submit">Сохранить спринт</button>
+        </form>
+
+        <div class="data-tools">
+          <h3>Данные проекта</h3>
+          <p class="muted">Задачи хранятся только в этом браузере. Сохраняйте резервную копию перед очисткой данных.</p>
+          <div class="button-row">
+            <button id="export-button" class="button secondary" type="button">Экспорт JSON</button>
+            <button id="import-button" class="button secondary" type="button">Импорт JSON</button>
+            <input id="import-file" class="visually-hidden" type="file" accept=".json,application/json">
+          </div>
+          <button id="demo-button" class="button text-button" type="button">Загрузить учебный пример</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="board-section" aria-labelledby="board-title">
+      <div class="section-heading board-heading">
+        <div><p class="eyebrow">Задачи</p><h2 id="board-title">Доска работы</h2></div>
+        <div class="filters">
+          <div><label for="search">Поиск</label><input id="search" type="search" placeholder="Найти задачу"></div>
+          <div><label for="priority-filter">Приоритет</label><select id="priority-filter"><option value="all">Все</option><option value="high">Высокий</option><option value="medium">Средний</option><option value="low">Низкий</option></select></div>
+        </div>
+      </div>
+      <p id="result-count" class="muted" aria-live="polite"></p>
+      <div class="board">
+        <section class="column" aria-labelledby="backlog-title"><div class="column-header"><h3 id="backlog-title">Бэклог</h3><span id="backlog-count" class="count">0</span></div><div id="backlog-list" class="card-list"></div></section>
+        <section class="column" aria-labelledby="todo-title"><div class="column-header"><h3 id="todo-title">К выполнению</h3><span id="todo-count" class="count">0</span></div><div id="todo-list" class="card-list"></div></section>
+        <section class="column" aria-labelledby="doing-title"><div class="column-header"><h3 id="doing-title">В работе</h3><span id="doing-count" class="count">0</span></div><div id="doing-list" class="card-list"></div></section>
+        <section class="column" aria-labelledby="done-title"><div class="column-header"><h3 id="done-title">Готово</h3><span id="done-count" class="count">0</span></div><div id="done-list" class="card-list"></div></section>
+      </div>
+    </section>
+  </main>
+
+  <div id="message" class="message" role="status" aria-live="polite"></div>
+  <footer class="site-footer"><div class="container">Учебный проект по дисциплине «Проектная деятельность в ИТ» · Дружко Евгений Сергеевич</div></footer>
+</body>
+</html>
