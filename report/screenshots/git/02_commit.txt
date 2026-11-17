@@ -1,0 +1,21 @@
+ПОВТОРНАЯ ПРОВЕРКА ИНДЕКСА И КОММИТА - 17.11.2026
+Отдельный временный репозиторий git_demo с четырьмя файлами приложения.
+
+$ git add README.md index.html styles.css app.js
+
+$ git status --short
+A  README.md
+A  app.js
+A  index.html
+A  styles.css
+
+$ git commit -m "Проверка добавления файлов в Git"
+[main (root-commit) 30e7dc2] Проверка добавления файлов в Git
+ 4 files changed, 559 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 app.js
+ create mode 100644 index.html
+ create mode 100644 styles.css
+
+$ git status --short --branch
+## main

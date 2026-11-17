@@ -1,0 +1,21 @@
+ТЕКУЩИЕ ВЕТКИ И АДРЕС УДАЛЁННОГО РЕПОЗИТОРИЯ - 17.11.2026
+Репозиторий проекта Agile/.
+
+$ git branch -a
+* main
+  phase/design
+  phase/implementation
+  phase/release
+  phase/requirements
+  phase/testing
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+  remotes/origin/phase/design
+  remotes/origin/phase/implementation
+  remotes/origin/phase/release
+  remotes/origin/phase/requirements
+  remotes/origin/phase/testing
+
+$ git remote -v
+origin	git@github.com:Merrciott/agile-planner-druzhko.git (fetch)
+origin	git@github.com:Merrciott/agile-planner-druzhko.git (push)

@@ -1,0 +1,6 @@
+ОТПРАВКА ОБНОВЛЕНИЙ ПРОЕКТА - 17.11.2026
+Вывод отправки исправлений приложения в main.
+
+$ git push origin main
+To github.com:Merrciott/agile-planner-druzhko.git
+   a51dec9..5f21642  main -> main

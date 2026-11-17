@@ -1,0 +1,25 @@
+ПОВТОРНАЯ ПРОВЕРКА НАСТРОЙКИ GIT - 17.11.2026
+Версия macOS и Git получена на рабочем компьютере.
+Инициализация повторена в отдельной временной копии файлов приложения.
+Технический адрес git-demo@example.invalid относится только к этой копии.
+
+$ sw_vers
+ProductName:		macOS
+ProductVersion:		27.0.1
+BuildVersion:		26A434
+
+$ /usr/bin/git --version
+git version 2.54.0 (Apple Git-157)
+
+$ git init -b main
+Initialized empty Git repository in /private/tmp/final_rr_audit/git_demo/.git/
+
+$ git config --local user.name "Дружко Евгений Сергеевич"
+
+$ git config --local user.email git-demo@example.invalid
+
+$ git status --short
+?? README.md
+?? app.js
+?? index.html
+?? styles.css

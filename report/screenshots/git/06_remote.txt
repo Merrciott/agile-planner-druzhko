@@ -1,0 +1,32 @@
+ПРОВЕРКА УДАЛЁННОГО РЕПОЗИТОРИЯ - 17.11.2026
+Команды выполнены в новой временной копии.
+
+$ git clone git@github.com:Merrciott/agile-planner-druzhko.git remote_verify_final
+Cloning into 'remote_verify_final'...
+
+$ git fetch origin
+
+$ git pull --ff-only origin main
+Already up to date.
+From github.com:Merrciott/agile-planner-druzhko
+ * branch            main       -> FETCH_HEAD
+
+$ git rev-parse --short HEAD
+5f21642
+
+$ git branch -r
+  origin/HEAD -> origin/main
+  origin/main
+  origin/phase/design
+  origin/phase/implementation
+  origin/phase/release
+  origin/phase/requirements
+  origin/phase/testing
+
+$ git ls-remote origin refs/heads/main refs/heads/phase/*
+5f21642675df7a8319b458f96d8e9a9fc861e76a	refs/heads/main
+a27832760224bcba44a100bbaa23868cc5228066	refs/heads/phase/design
+6f775e0d40c1a75cfbe33d346fedb66bca586440	refs/heads/phase/implementation
+43ce87cf3c05c473539b74622bbbe97904edecfb	refs/heads/phase/release
+e174750b7d39bf23225b555ec86b01c531f35615	refs/heads/phase/requirements
+95f6b1776be32ecdaea7df1bedb2e45a44576e55	refs/heads/phase/testing

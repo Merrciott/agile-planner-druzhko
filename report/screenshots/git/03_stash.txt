@@ -1,0 +1,31 @@
+ПОВТОРНАЯ ПРОВЕРКА ВЕТОК И STASH - 17.11.2026
+Команды выполнены в отдельном временном репозитории git_demo.
+
+$ git switch -c check/stash
+Switched to a new branch 'check/stash'
+$ [добавлена временная строка в README.md]
+$ git status --short
+ M README.md
+$ git stash push -m "Повторная проверка stash"
+Saved working directory and index state On check/stash: Повторная проверка stash
+$ git stash list
+stash@{0}: On check/stash: Повторная проверка stash
+$ git status --short --branch
+## check/stash
+$ git stash pop
+On branch check/stash
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (be2f061279a6969371df8447be0eedda0cc9a9d9)
+$ git diff --stat
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+$ git restore README.md
+$ git switch main
+Switched to branch 'main'
+$ git status --short --branch
+## main
