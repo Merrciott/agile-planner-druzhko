@@ -9,13 +9,10 @@ button{cursor:pointer}
 .site-header{background:linear-gradient(115deg,#163f7a,#2456a6);color:#fff;padding:34px 0 36px}
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
 h1,h2,h3,p{margin-top:0}
-h1{font-size:clamp(1.8rem,3.5vw,2.55rem);line-height:1.15;margin:7px 0}
+h1{font-size:clamp(1.8rem,3.5vw,2.55rem);line-height:1.15;margin:0}
 h2{font-size:1.35rem;line-height:1.25;margin:4px 0 15px}
 h3{font-size:1.03rem;line-height:1.25}
 .eyebrow{font-size:.73rem;letter-spacing:.11em;text-transform:uppercase;font-weight:700;margin:0;color:#5d7295}
-.site-header .eyebrow{color:#b9d1ff}
-.subtitle{color:#e3edff;margin:0}
-.header-badge{border:1px solid #b5d0fb;border-radius:999px;padding:8px 12px;font-size:.83rem;white-space:nowrap}
 main{padding:26px 0 48px}
 .summary,.panel{background:#fff;border:1px solid #dce4ee;box-shadow:0 8px 24px rgba(28,55,92,.05);border-radius:16px}
 .summary{padding:24px;margin-bottom:20px}
@@ -68,7 +65,6 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid #
 .empty-column{color:#7a8799;font-size:.78rem;line-height:1.45;padding:12px 3px}
 .message{position:fixed;bottom:20px;right:20px;max-width:min(420px,calc(100% - 40px));background:#1f3d67;color:#fff;border-radius:9px;padding:11px 15px;box-shadow:0 8px 26px rgba(0,0,0,.2);display:none;z-index:20}
 .message.visible{display:block}.message.error{background:#982f3e}
-.site-footer{border-top:1px solid #dce4ee;color:#6c7890;font-size:.78rem;padding:19px 0}
 @media(max-width:1050px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.workspace-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.board-heading{display:block}.filters{margin-top:13px}.site-header{padding:28px 0}.header-badge{display:none}}
+@media(max-width:760px){.workspace-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.board-heading{display:block}.filters{margin-top:13px}.site-header{padding:28px 0}}
 @media(max-width:560px){.container{width:min(100% - 24px,1280px)}.summary,.panel{padding:17px}.stats,.board{grid-template-columns:1fr}.field-row{grid-template-columns:1fr}.filters{display:grid;grid-template-columns:1fr 1fr}.filters>div,.filters>div:first-child{min-width:0}.section-heading{display:block}.section-heading .muted{margin-top:6px}}

@@ -20,10 +20,20 @@ function showMessage(message, isError = false) {
   messageTimer = setTimeout(() => box.classList.remove("visible"), 4200);
 }
 
+function isValidDate(value) {
+  if (value === "") return true;
+  if (!/^(?!0000)\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
+
 function isValidState(value) {
   if (!value || value.version !== 1 || !value.sprint || !Array.isArray(value.tasks)) return false;
   const sprint = value.sprint;
   if (["name", "goal", "startDate", "endDate"].some((key) => typeof sprint[key] !== "string")) return false;
+  if (!sprint.name.trim() || sprint.name.length > 80 || sprint.goal.length > 300) return false;
+  if (!isValidDate(sprint.startDate) || !isValidDate(sprint.endDate)) return false;
+  if (sprint.startDate && sprint.endDate && sprint.endDate < sprint.startDate) return false;
   const ids = new Set();
   return value.tasks.every((task) => {
     if (!task || typeof task.id !== "string" || !task.id || ids.has(task.id)) return false;
@@ -113,7 +123,7 @@ function renderSummary() {
   $("#summary-title").textContent = sprint.name || "Текущий спринт";
   $("#sprint-goal-display").textContent = sprint.goal || "Цель спринта пока не указана.";
   $("#sprint-period").textContent = sprint.startDate && sprint.endDate
-    ? `${sprint.startDate} — ${sprint.endDate}` : "Даты не заданы";
+    ? `${sprint.startDate} - ${sprint.endDate}` : "Даты не заданы";
   const planned = state.tasks.filter((task) => task.inSprint);
   const done = planned.filter((task) => task.status === "done");
   const allPoints = planned.reduce((sum, task) => sum + task.points, 0);
